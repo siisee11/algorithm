@@ -21,7 +21,8 @@ else :
 
 n = len(a) - 1
 i = 0
-for j in range(0, n):
+j = 0
+while (j < n + 1):
 		print(i)
 		print(j)
 		print(n)
@@ -35,7 +36,5 @@ for j in range(0, n):
 				n = n - 1
 		else :
 				j = j + 1
-		print("-----------------------------------")
-
 
 print(a)
