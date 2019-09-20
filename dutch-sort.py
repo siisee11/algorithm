@@ -14,8 +14,7 @@ if (args.random) :
 else :
 		print("Simple test for array [2, 0, 0, 1, 2, 1]")
 		print("more options please check -h option")
-#        a = [2, 0, 0, 1, 2, 1]
-		a = [1, 0, 1, 1, 0, 0]
+		a = [2, 0, 0, 1, 2, 1]
 
 
 
@@ -23,10 +22,6 @@ n = len(a) - 1
 i = 0
 j = 0
 while (j < n + 1):
-		print(i)
-		print(j)
-		print(n)
-		print(a)
 		if a[j] < 1 :
 				a[i], a[j] = a[j], a[i]
 				i = i + 1
