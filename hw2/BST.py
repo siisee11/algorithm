@@ -23,11 +23,42 @@ def Delete(value, root):
 def Balance(root):
 	if args.verbose:
 		print("[INFO] Balance {}".format(root.name))
+	root.balance()
 
 def Merge(root1, root2):
 	if args.verbose:
 		print("[INFO] Merge {} to {}".format(root1.name, root2.name))
-	return root1.merge(root2)
+
+	inorder1 = root1.inorder()
+	inorder2 = root2.inorder()
+	inorder = Merge_two_array(inorder1, inorder2)
+
+	new_root = BST("root")
+	new_root.build_balance(inorder)	
+
+	return new_root
+
+def Merge_two_array(arr1, arr2):
+	arr = []
+	i = j = 0
+
+	while i < len(arr1) and j < len(arr2):
+		if arr1[i] < arr2[j]:
+			arr.append(arr1[i])
+			i = i + 1
+		else:
+			arr.append(arr2[j])
+			j = j + 1
+
+	while i < len(arr1):
+		arr.append(arr1[i])
+		i = i + 1
+
+	while j < len(arr2):
+		arr.append(arr2[j])
+		j = j + 1
+
+	return arr
 
 def PrintPreorder(root):
 	if args.verbose:
@@ -78,7 +109,6 @@ class BST(object):
 				return node.left
 			
 			victim = self._min_value_node(node.right)
-			print(victim.data)
 			node.data = victim.data
 			node.right = self._delete(node.right, victim.data)
 		
@@ -99,16 +129,42 @@ class BST(object):
 			self._print_pre(node.right)
 	
 	def inorder(self):
-		def _inorder(node):
-			if node is not None:
-				a = _inorder(node.left)
-				a.append(node.data)
-				_inorder(node.right)
+		arr = []
+		self._inorder(self.root, arr)
+		return arr
 
-		return _inorder(self, node):
+	def _inorder(self, node, arr):
+		if node is not None:
+			self._inorder(node.left, arr)
+			arr.append(node.data)
+			self._inorder(node.right, arr)
 
-	def merge(self, BST2):
-		return self.root
+
+	def balance(self):
+		inorder = []
+		self._inorder(self.root, inorder)
+
+		if args.verbose:
+			print("inorder : " , inorder)
+
+		self.root = self._build_balance(inorder)
+
+	def build_balance(self, arr):
+		self.root = self._build_balance(arr)
+
+	def _build_balance(self, arr):
+		if not arr:
+			return None	
+
+		mid = int(len(arr) / 2)
+
+		node = Node(arr[mid])
+
+		node.left = self._build_balance(arr[:mid])
+		node.right = self._build_balance(arr[mid+1:])
+
+		return node
+
 
 def main():
 	root1 = BST("root1")

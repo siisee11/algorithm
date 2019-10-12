@@ -1,3 +1,8 @@
 # Algorithm
 
-## week1 - dutch flag
+## Assignment1
+* dutch flag sort
+
+## Assignment2
+* key pair
+* BST methods
