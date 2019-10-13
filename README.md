@@ -5,4 +5,4 @@
 
 ## Assignment2
 * key pair
-* BST methods
+* BST 
