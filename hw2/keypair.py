@@ -9,7 +9,7 @@ args = parser.parse_args()
 def main():
 	value = 1129813
 
-	for i in range(1 , 5):
+	for i in range(1 , 6):
 		a = []
 		ht = [0] * value
 		filepath = 'hw2_input' + str(i) + '.txt'
